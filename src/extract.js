@@ -1,5 +1,5 @@
 const cheerio = require('cheerio');
-const cheerioUtils = require('cheerio/lib/utils');
+const cheerioUtils = require('cheerio/utils');
 const Pofile = require('pofile');
 const acorn = require('acorn');
 const walk = require('acorn-walk');
