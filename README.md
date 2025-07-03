@@ -1,7 +1,6 @@
 # easygettext
 
-[![Build Status](https://travis-ci.org/Polyconseil/easygettext.svg?branch=master)](https://travis-ci.org/Polyconseil/easygettext)
-[![codecov.io](https://codecov.io/github/Polyconseil/easygettext/coverage.svg?branch=master)](https://codecov.io/github/Polyconseil/easygettext?branch=master)
+This is a fork of [easygettext](https://github.com/Polyconseil/easygettext).
 
 Radically simple gettext tokens extraction tool for:
 
@@ -17,13 +16,13 @@ files.
 Also ships with a PO-to-JSON converter.
 
 ### Installation
-You can install the [easygettext](https://www.npmjs.com/package/easygettext) package by running 
+You can install the [@cintek/easygettext](https://www.npmjs.com/package/@cintek/easygettext)package by running 
 ```bash
-npm install --save-dev easygettext
+npm install --save-dev @cintek/easygettext
 ```
 or 
 ```bash
-yarn add --dev easygettext
+yarn add --dev @cintek/easygettext
 ```
 
 
