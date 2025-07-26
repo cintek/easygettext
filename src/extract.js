@@ -445,7 +445,7 @@ exports.Extractor = class Extractor {
         continue;
       }
       try {
-        return this._compileExpressions(acorn.parse(expr));
+        return this._compileExpressions(acorn.parse(expr, {ecmaVersion: 8}));
       } catch (exception) {
         if (i === (contexts.length - 1)) {
           throw exception;

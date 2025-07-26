@@ -33,13 +33,13 @@
   },
   "dependencies": {
     "@babel/core": "^7.11.6",
-    "acorn": "^7.4.0",
+    "acorn": "^8.15.0",
     "acorn-stage3": "^4.0.0",
-    "acorn-walk": "^8.0.0",
+    "acorn-walk": "^8.3.4",
     "buntis": "0.2.1",
-    "cheerio": "^1.0.0",
+    "cheerio": "^1.1.2",
     "estree-walker": "^2.0.1",
-    "flow-remove-types": "^2.135.0",
+    "flow-remove-types": "^2.277.1",
     "minimist": "^1.2.5",
     "pofile": "^1.1.0"
   },
