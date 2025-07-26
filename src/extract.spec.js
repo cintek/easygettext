@@ -156,10 +156,10 @@ describe('data preprocessor', () => {
 
   it('should preprocess VueJS no script tag correctly', () => {
     const [script] = extract.preprocessScript(fixtures.VUE_COMPONENT_WITHOUT_SCRIPT_TAG, 'vue');
-    expect(script.content).toBe(`import { createVNode as _createVNode, openBlock as _openBlock, createBlock as _createBlock } from "vue"
+    expect(script.content).toBe(`import { openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
 
 export function render(_ctx, _cache) {
-  return (_openBlock(), _createBlock("h1", null, "Hello"))
+  return (_openBlock(), _createElementBlock("h1", null, "Hello"))
 }`);
   });
 
@@ -626,6 +626,6 @@ describe('Raw translation data', () => {
         endDelimiter: '',
       })._extractTranslationData(fixtures.FILENAME_0, fixtures.HTML_INCOMPLETE_COMMENT);
     };
-    expect(extractCall).toThrow('Assigning to rvalue, when trying to parse `ng-bind="\'Cancel\' |translate">` foo.htm:1');
+    expect(extractCall).toThrow('Assigning to rvalue, when trying to parse `ng-bind="\'Cancel\' |translate"></button>` foo.htm:2');
   });
 });

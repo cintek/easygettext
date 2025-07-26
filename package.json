@@ -19,10 +19,10 @@
   "author": "cintek",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^26.0.14",
+    "@types/jest": "^28.1.8",
     "codecov": "^3.8.0",
     "eslint": "^7.10.0",
-    "jest": "^26.5.2"
+    "jest": "^28.1.3"
   },
   "engines": {
     "node": ">=8"
