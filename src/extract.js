@@ -95,9 +95,10 @@ function preprocessTemplate(data, type = 'html', filename = null) {
       }).trim();
     } else if (type === 'vue') {
       const $ = cheerio.load(data, {
-        xmlMode: true,
-        decodeEntities: false,
-        withStartIndices: true,
+        xml: {
+          decodeEntities: false,
+          withStartIndices: true,
+        },
       });
 
       templateData = $('template').map(function() {
@@ -575,9 +576,10 @@ exports.Extractor = class Extractor {
 
     const strings = content.map(c => {
       const $ = cheerio.load(c, {
-        xmlMode: true,
-        decodeEntities: false,
-        withStartIndices: true,
+        xml: {
+          decodeEntities: false,
+          withStartIndices: true,
+        },
       });
 
       return this._extractTranslationDataFromNodes($.root()[0].children, $, filename, c);
