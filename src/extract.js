@@ -481,7 +481,6 @@ exports.Extractor = class Extractor {
   }
 
   _getAllMatches(text, matches, re) {
-    // eslint-disable-next-line no-constant-condition
     while (true) {
       const match = re.exec(text);
       if (match === null) {

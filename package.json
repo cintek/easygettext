@@ -21,11 +21,12 @@
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "codecov": "^3.8.0",
-    "eslint": "^7.10.0",
+    "eslint": "^9.0.0",
+    "globals": "^17.5.0",
     "jest": "^30.0.2"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "bin": {
     "gettext-compile": "./src/compile-cli.js",

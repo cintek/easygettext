@@ -121,6 +121,7 @@ function extractStringsFromJavascript(filename, script, parser = 'auto') {
     try {
       parsedJSGettext = parseJSGettextWithAcorn(script);
     } catch (e) {
+      console.error(e);
       console.log(`[${PROGRAM_NAME}] will switch extracting using acorn as parser and use babel instead`); // eslint-disable-line no-console
       parsedJSGettext = parseJSGettextWithBabel(script);
     }
