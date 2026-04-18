@@ -1,8 +1,8 @@
-const {walk} = require('estree-walker');
-const {parseTSScript} = require('buntis');
-const extractUtils = require('./extract-utils.js');
+import {walk} from 'zimmerframe';
+import { parseTSScript } from 'buntis';
+import { getTextEntries } from './extract-utils.js';
 
-const {DEFAULT_VUE_GETTEXT_FUNCTIONS} = require('./constants.js');
+import {DEFAULT_VUE_GETTEXT_FUNCTIONS} from './constants.js';
 const DEFAULT_VUE_GETTEXT_FUNCTIONS_KEYS = Object.keys(DEFAULT_VUE_GETTEXT_FUNCTIONS);
 
 
@@ -42,8 +42,12 @@ function getTranslationObject(node, gettextFunctionName, filename) {
 
 function getGettextEntriesFromTypeScript(script, filename) {
   let translationEntries = [];
-  walk(parseTSScript(script, {loc: true, next: true}), {
-    enter: function(node) {
+  const initialState = {
+    declarations: [],
+    depth: 0,
+  };
+  walk(parseTSScript(script, {loc: true, next: true}), initialState, {
+    _(node, { state, next }) {
       if (node.type && node.type === 'CallExpression' && node.callee) {
         if (DEFAULT_VUE_GETTEXT_FUNCTIONS_KEYS.includes(node.callee.name)) {
           translationEntries.push(getTranslationObject(node, node.callee.name, filename));
@@ -54,15 +58,14 @@ function getGettextEntriesFromTypeScript(script, filename) {
           }
         }
       }
+      next(state);
     },
   });
   return translationEntries;
 }
 
 function extractStringsFromTypeScript(filename, script) {
-  return extractUtils.getTextEntries(filename, getGettextEntriesFromTypeScript(script, filename));
+  return getTextEntries(filename, getGettextEntriesFromTypeScript(script, filename));
 }
 
-module.exports = {
-  extractStringsFromTypeScript,
-};
+export {extractStringsFromTypeScript};

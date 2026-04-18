@@ -1,12 +1,24 @@
-const cheerio = require('cheerio');
-const cheerioUtils = require('cheerio/utils');
-const Pofile = require('pofile');
-const acorn = require('acorn');
-const walk = require('acorn-walk');
-const constants = require('./constants.js');
-const jsExtractor = require('./javascript-extract.js');
-const tsExtractor = require('./typescript-extract.js');
-const flowRemoveTypes = require('flow-remove-types');
+import * as cheerio from 'cheerio';
+import * as cheerioUtils from 'cheerio/utils';
+import PO from 'pofile';
+import { Parser as acorn } from 'acorn';
+import * as walk from 'acorn-walk';
+import pug from 'pug';
+import {
+  ATTRIBUTE_COMMENT,
+  ATTRIBUTE_CONTEXT,
+  ATTRIBUTE_PLURAL,
+  DEFAULT_ATTRIBUTES,
+  DEFAULT_END_DELIMITER,
+  DEFAULT_FILTER_PREFIX,
+  DEFAULT_FILTERS,
+  DEFAULT_START_DELIMITER,
+  MARKER_NO_CONTEXT,
+} from './constants.js';
+import { extractStringsFromJavascript } from './javascript-extract.js';
+import { extractStringsFromTypeScript } from './typescript-extract.js';
+import flowRemoveTypes from 'flow-remove-types';
+import { parse, compileTemplate } from '@vue/compiler-sfc';
 
 // Internal regular expression used to escape special characters
 const ESCAPE_REGEX = /[\-\[\]\/{}()*+?.\\^$|]/g;
@@ -34,7 +46,7 @@ function getExtraAttribute(node, attrs, attrType) {
 }
 
 
-exports.TranslationReference = class TranslationReference {
+const TranslationReference = class TranslationReference {
   constructor(filename, content, charPosition) {
     this.file = filename;
     this.line = lineCount(content, charPosition);
@@ -53,7 +65,6 @@ function preprocessScript(data, type) {
   const contents = [];
 
   if (type === 'vue') {
-    const {parse, compileTemplate} = require('@vue/compiler-sfc');
     const vueFile = parse(data).descriptor;
 
     if (vueFile.script) {
@@ -86,7 +97,6 @@ function preprocessTemplate(data, type = 'html', filename = null) {
 
   if (data) {
     if (type === 'jade' || type === 'pug') {
-      const pug = require('pug');
       templateData = pug.render(data, {
         filename: filename,
         pretty: true,
@@ -123,10 +133,7 @@ function preprocessTemplate(data, type = 'html', filename = null) {
   return templateData;
 }
 
-exports.preprocessTemplate   = preprocessTemplate;
-exports.preprocessScript = preprocessScript;
-
-exports.NodeTranslationInfo = class NodeTranslationInfo {
+const NodeTranslationInfo = class NodeTranslationInfo {
   constructor(node, text, reference, attributes) {
     this.text = text;
     this.reference = reference;
@@ -140,17 +147,17 @@ exports.NodeTranslationInfo = class NodeTranslationInfo {
       = el.type === 'text' && el.prev === null && el.next === null;
 
     this.msgctxt = getExtraAttribute(doInheritContext
-      ? node.parent() : node, attributes, constants.ATTRIBUTE_CONTEXT)
-      || constants.MARKER_NO_CONTEXT;
+      ? node.parent() : node, attributes, ATTRIBUTE_CONTEXT)
+      || MARKER_NO_CONTEXT;
     this.comment = getExtraAttribute(doInheritContext
-      ? node.parent() : node, attributes, constants.ATTRIBUTE_COMMENT);
-    this.plural = getExtraAttribute(node, attributes, constants.ATTRIBUTE_PLURAL);
+      ? node.parent() : node, attributes, ATTRIBUTE_COMMENT);
+    this.plural = getExtraAttribute(node, attributes, ATTRIBUTE_PLURAL);
   }
 
   toPoItem(withLineNumbers = false) {
-    let poItem = new Pofile.Item();
+    let poItem = new PO.Item();
     poItem.msgid = this.text;
-    poItem.msgctxt = this.msgctxt === constants.MARKER_NO_CONTEXT ? null : this.msgctxt;
+    poItem.msgctxt = this.msgctxt === MARKER_NO_CONTEXT ? null : this.msgctxt;
     poItem.references = [this.reference.toString(withLineNumbers)];
     poItem.msgid_plural = this.plural;
     poItem.msgstr = this.plural ? ['', ''] : [];
@@ -199,15 +206,15 @@ function cartesian(a, b, ...c) {
 //   return text;
 // }
 
-exports.Extractor = class Extractor {
+const Extractor = class Extractor {
 
   constructor(options) {
     this.options = Object.assign({
-      startDelimiter: constants.DEFAULT_START_DELIMITER,
-      endDelimiter: constants.DEFAULT_END_DELIMITER,
-      attributes: constants.DEFAULT_ATTRIBUTES,
-      filters: constants.DEFAULT_FILTERS,
-      filterPrefix: constants.DEFAULT_FILTER_PREFIX,
+      startDelimiter: DEFAULT_START_DELIMITER,
+      endDelimiter: DEFAULT_END_DELIMITER,
+      attributes: DEFAULT_ATTRIBUTES,
+      filters: DEFAULT_FILTERS,
+      filterPrefix: DEFAULT_FILTER_PREFIX,
       lineNumbers: false,
       removeHTMLWhitespaces: false,
     }, options);
@@ -229,9 +236,9 @@ exports.Extractor = class Extractor {
 
   _getTokens() {
     const startDelimiter = this.options.startDelimiter === ''
-      ? constants.DEFAULT_START_DELIMITER : this.options.startDelimiter;
+      ? DEFAULT_START_DELIMITER : this.options.startDelimiter;
     const endDelimiter = this.options.endDelimiter === ''
-      ? constants.DEFAULT_END_DELIMITER : this.options.endDelimiter;
+      ? DEFAULT_END_DELIMITER : this.options.endDelimiter;
     const end = endDelimiter.replace(ESCAPE_REGEX, '\\$&');
     const bodyCore = '(.|\\n)*';
     return {
@@ -321,7 +328,7 @@ exports.Extractor = class Extractor {
   parseJavascript(filename, content, parser = 'auto') {
     const jsContent = flowRemoveTypes(content).toString();
 
-    const extractedStringsFromScript = jsExtractor.extractStringsFromJavascript(filename, jsContent, parser);
+    const extractedStringsFromScript = extractStringsFromJavascript(filename, jsContent, parser);
 
     this.processStrings(extractedStringsFromScript);
   }
@@ -329,13 +336,13 @@ exports.Extractor = class Extractor {
   parseTypeScript(filename, content) {
     const tsContent = flowRemoveTypes(content).toString();
 
-    const extractedStringsFromScript = tsExtractor.extractStringsFromTypeScript(filename, tsContent);
+    const extractedStringsFromScript = extractStringsFromTypeScript(filename, tsContent);
 
     this.processStrings(extractedStringsFromScript);
   }
 
   toString() {
-    const catalog = new Pofile();
+    const catalog = new PO();
     catalog.headers = {
       'Content-Type': 'text/plain; charset=utf-8',
       'Content-Transfer-Encoding': '8bit',
@@ -498,14 +505,14 @@ exports.Extractor = class Extractor {
       return this._extractTranslationDataFromNodes(Array.from($(el.data)), $, filename, content);
     }
 
-    const reference = new exports.TranslationReference(filename, content, el.startIndex);
+    const reference = new TranslationReference(filename, content, el.startIndex);
     const node = $(el);
 
     if (this._hasTranslationToken(node)) {
       const text = this._getNodeHTML(node);
 
       if (text.length !== 0) {
-        return [new exports.NodeTranslationInfo(node, text, reference, this.options.attributes)];
+        return [new NodeTranslationInfo(node, text, reference, this.options.attributes)];
       }
     }
 
@@ -517,7 +524,7 @@ exports.Extractor = class Extractor {
             .filter((text) => text.length !== 0)
             .forEach((text) => {
               tokensFromFilters.push(
-                new exports.NodeTranslationInfo(node, text, reference,
+                new NodeTranslationInfo(node, text, reference,
                   this.options.attributes));
             });
 
@@ -591,3 +598,5 @@ exports.Extractor = class Extractor {
     return this.options.attributes.some((keyword) => node.is(keyword) || node.attr(keyword) !== undefined);
   }
 };
+
+export { preprocessScript, preprocessTemplate, Extractor, TranslationReference, NodeTranslationInfo };

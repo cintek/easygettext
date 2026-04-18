@@ -1,36 +1,36 @@
-exports.FILENAME_0             = 'foo.htm';
-exports.FILENAME_1             = 'bar.htm';
-exports.FILENAME_2             = 'baz.vue';
-exports.VUE_COMPONENT_FILENAME = 'GreetingsComponent.vue';
-exports.PUG_FILENAME           = 'index.pug';
-exports.PUG_INCLUDED_FILENAME  = 'common/footer.pug';
+export const FILENAME_0             = 'foo.htm';
+export const FILENAME_1             = 'bar.htm';
+export const FILENAME_2             = 'baz.vue';
+export const VUE_COMPONENT_FILENAME = 'GreetingsComponent.vue';
+export const PUG_FILENAME           = 'index.pug';
+export const PUG_INCLUDED_FILENAME  = 'common/footer.pug';
 
 
-exports.HTML0_CTX0 = `
+export const HTML0_CTX0 = `
 <div><h4 translate="translate" translate-context="For charlie">Hello world</h4></div>`;
-exports.HTML0_CTX1 = `
+export const HTML0_CTX1 = `
 <div><h4 translate="translate" translate-context="For jacques">Hello world</h4></div>`;
 
-exports.HTML1_PLURAL0 = '<h2 translate="" i18n-plural="We work">I work</h2>';
-exports.HTML1_PLURAL1 = '<h2 translate="" translate-plural="Us works">I work</h2>';
+export const HTML1_PLURAL0 = '<h2 translate="" i18n-plural="We work">I work</h2>';
+export const HTML1_PLURAL1 = '<h2 translate="" translate-plural="Us works">I work</h2>';
 
-exports.HTML2_COMMENT0 = '<h2 translate i18n-comment="My first comment">Hello</h2>';
-exports.HTML2_COMMENT1 = '<h2 translate="" translate-comment="Another comment">Hello</h2>';
+export const HTML2_COMMENT0 = '<h2 translate i18n-comment="My first comment">Hello</h2>';
+export const HTML2_COMMENT1 = '<h2 translate="" translate-comment="Another comment">Hello</h2>';
 
-exports.HTML3_FILTER0 = '<h2 translate-comment="Fugazy">{{ "Hola, hombre" | translate }}</h2>';
-exports.HTML3_FILTER1 = '<h2 tooltip="{{\'Hola, mujer\'|i18n}}">StufStuff</h2>';
-exports.HTML3_FILTER2 = '<h2 tooltip="{{ a || \'Hola, hola\'|i18n }}">StufStuff</h2>';
-exports.HTML3_FILTER3 = '<h2 attr="{{ &quot;So long, my dear&quot; |i18n }}">Martha</h2>';
-exports.HTML3_FILTER4 = '<h2 attr="&quot;So long, my dear&quot; |i18n">Martha</h2>';
-exports.HTML3_FILTER5 = '<h2 attr="{{ \'Guns\\\'n roses, my dear\' |i18n }}">Son</h2>';
-exports.HTML3_FILTER6 = '<h2 attr="\'Guns\\\'n roses, my dear\' |i18n ">Daughter</h2>';
-exports.HTML3_FILTER7 = '<h2 attr="::\'Guns\\\'n roses, my dear\' |i18n ">Wife</h2>';
+export const HTML3_FILTER0 = '<h2 translate-comment="Fugazy">{{ "Hola, hombre" | translate }}</h2>';
+export const HTML3_FILTER1 = '<h2 tooltip="{{\'Hola, mujer\'|i18n}}">StufStuff</h2>';
+export const HTML3_FILTER2 = '<h2 tooltip="{{ a || \'Hola, hola\'|i18n }}">StufStuff</h2>';
+export const HTML3_FILTER3 = '<h2 attr="{{ &quot;So long, my dear&quot; |i18n }}">Martha</h2>';
+export const HTML3_FILTER4 = '<h2 attr="&quot;So long, my dear&quot; |i18n">Martha</h2>';
+export const HTML3_FILTER5 = '<h2 attr="{{ \'Guns\\\'n roses, my dear\' |i18n }}">Son</h2>';
+export const HTML3_FILTER6 = '<h2 attr="\'Guns\\\'n roses, my dear\' |i18n ">Daughter</h2>';
+export const HTML3_FILTER7 = '<h2 attr="::\'Guns\\\'n roses, my dear\' |i18n ">Wife</h2>';
 
-exports.HTML_FILTER_SPLIT_STRING = `
+export const HTML_FILTER_SPLIT_STRING = `
 <h2 ng-bind="::'Three' +' parts, '  +   'one whole.' |i18n ">Will be replaced</h2>
 `;
 
-exports.HTML_FILTER_ESCAPED_QUOTES = `
+export const HTML_FILTER_ESCAPED_QUOTES = `
 {{ 'Life\\'s a tough teacher.' |translate}}
 {{ "Life's a tough journey." |translate}}
 {{ "Life\\'s a tough road." |translate}}
@@ -38,7 +38,7 @@ exports.HTML_FILTER_ESCAPED_QUOTES = `
 {{ 'Life\\'s a tough \\'journey\\'.' |translate}}
 `;
 
-exports.HTML_VARIED_CHALLENGES = `
+export const HTML_VARIED_CHALLENGES = `
 <div aria-label="Message Selected Users">
   <button type="button"
           ng-class="{'active': vm.messageView === 'preview', disabled: !vm.useHtml}"
@@ -51,14 +51,14 @@ exports.HTML_VARIED_CHALLENGES = `
 </div>
 `;
 
-exports.HTML_FILTER_SPLIT_MULTILINE_STRING_ATTR = `
+export const HTML_FILTER_SPLIT_MULTILINE_STRING_ATTR = `
 <h2 ng-bind="::'Four' +
  ' parts, ' +
   'maybe, '
   + 'one whole.' |i18n ">Will be replaced</h2>
 `;
 
-exports.HTML_FILTER_SPLIT_MULTILINE_STRING_INTERPOLATED = `
+export const HTML_FILTER_SPLIT_MULTILINE_STRING_INTERPOLATED = `
 <h2>{{::'Four' +
  ' parts, ' +
   'probably, '
@@ -66,7 +66,7 @@ exports.HTML_FILTER_SPLIT_MULTILINE_STRING_INTERPOLATED = `
 `;
 
 
-exports.HTML_COMPLEX_NESTING = `<div translate translate-comment="Outer comment …"
+export const HTML_COMPLEX_NESTING = `<div translate translate-comment="Outer comment …"
      translate-context="Outer Context">
   <div translate translate-comment="Inner comment …"
        translate-context="Inner Context">
@@ -84,7 +84,7 @@ exports.HTML_COMPLEX_NESTING = `<div translate translate-comment="Outer comment 
   </div>
 </div>`;
 
-exports.HTML_LINEBREAK_FILTER = `
+export const HTML_LINEBREAK_FILTER = `
 <div class="buttons">
 <a href="#"
   ng-click="vm.doSomething()"
@@ -111,7 +111,7 @@ exports.HTML_LINEBREAK_FILTER = `
 }}</a>
 `;
 
-exports.HTML_TEXT_CHALLENGE = `
+export const HTML_TEXT_CHALLENGE = `
 <p>{{ 'Thanks for joining ….  However, … does not start until'
   |translate }}
   <span>{{ vm.startDatetime |amCalendar}}</span>{{ ', but will open' |
@@ -121,7 +121,7 @@ exports.HTML_TEXT_CHALLENGE = `
 </p>
 `;
 
-exports.HTML_TEXT_FILTER = `
+export const HTML_TEXT_FILTER = `
 {{ 'Outside 0' |translate }}
 <div class="buttons">
 <a href="#">{{ 'Text 0' |translate }}</a>
@@ -131,7 +131,7 @@ exports.HTML_TEXT_FILTER = `
 {{ 'Outside 1' |translate }}
 `;
 
-exports.HTML_TEXT_MULTIPLE_FILTER = `
+export const HTML_TEXT_MULTIPLE_FILTER = `
 <a href="#">
 {{ 'Text 0' |translate }} between
  {{ 'Text 1' |translate }} between again
@@ -139,7 +139,7 @@ exports.HTML_TEXT_MULTIPLE_FILTER = `
 </a>
 `;
 
-exports.HTML_TEXT_FILTER_COMMENT = `
+export const HTML_TEXT_FILTER_COMMENT = `
 <!doctype html>
 <a href="#">
   <!-- First comment -->
@@ -148,7 +148,7 @@ exports.HTML_TEXT_FILTER_COMMENT = `
 </a>
 `;
 
-exports.HTML_NESTED_FILTER = `
+export const HTML_NESTED_FILTER = `
   <li class="action thumbs-up"
       title="{{::'Like' |translate}}" alt="{{::'Gets extracted now' |translate}}">
       <span ng-bind="::vm.voteCount |translate" alt="{{:: 'Number of votes' |translate}}"></span>
@@ -156,32 +156,32 @@ exports.HTML_NESTED_FILTER = `
   </li>
 `;
 
-exports.HTML_COMMENTED_NESTED_FILTER = `
+export const HTML_COMMENTED_NESTED_FILTER = `
 <!--
-${exports.HTML_NESTED_FILTER}
+${HTML_NESTED_FILTER}
 -->
 `;
 
-exports.HTML_COMMENTED_COMPLEX_NESTING = `
+export const HTML_COMMENTED_COMPLEX_NESTING = `
 <!--
-${exports.HTML_COMPLEX_NESTING}
+${HTML_COMPLEX_NESTING}
 -->
 `;
 
-exports.HTML_OPTIONAL_WHITESPACES = `
+export const HTML_OPTIONAL_WHITESPACES = `
 <strong translate>It's software you install
            on your server!
 
   </strong>
 `;
 
-exports.HTML4_TAG0 = '<translate>Duck</translate>';
-exports.HTML4_TAG1 = '<i18n>Dice</i18n>';
-exports.HTML4_TAG2 = '<get-text>Rabbit</get-text>';
-exports.HTML4_TAG3 = '<i18n translate>overtranslate</i18n>';
-exports.HTML4_TAG4 = '<i18n translate>Life\'s a tough "journey"</i18n>';
-exports.HTML4_TAG5 = '<div attr="{{ \'Life\\\'s a tough teacher\' |translate}}"></div>';
-exports.HTML4_TAG6 = `
+export const HTML4_TAG0 = '<translate>Duck</translate>';
+export const HTML4_TAG1 = '<i18n>Dice</i18n>';
+export const HTML4_TAG2 = '<get-text>Rabbit</get-text>';
+export const HTML4_TAG3 = '<i18n translate>overtranslate</i18n>';
+export const HTML4_TAG4 = '<i18n translate>Life\'s a tough "journey"</i18n>';
+export const HTML4_TAG5 = '<div attr="{{ \'Life\\\'s a tough teacher\' |translate}}"></div>';
+export const HTML4_TAG6 = `
 <label class="btn btn-primary"
        ng-class="{'active': vm.respectUsersPreferences}">
   <input type="checkbox"
@@ -190,7 +190,7 @@ exports.HTML4_TAG6 = `
 </label>
 `;
 
-exports.HTML_LONG = `
+export const HTML_LONG = `
   <div class="col-xs-4">
   <h4 translate="translate" translate-context="Pour maman">Hello world</h4>
   <h2 translate="" i18n-plural='We work'>I work</h2>
@@ -206,7 +206,7 @@ exports.HTML_LONG = `
   </tr>
 `;
 
-exports.HTML_SORTING = `
+export const HTML_SORTING = `
   <i18n>f</i18n>
   <i18n>0</i18n>
   <i18n>c</i18n>
@@ -224,7 +224,7 @@ exports.HTML_SORTING = `
   <i18n>d</i18n>
 `;
 
-exports.HTML_JS_EXPRESSION_COMPLEX_FILTERS = `
+export const HTML_JS_EXPRESSION_COMPLEX_FILTERS = `
 <span ng-bind="'Bed n\\'' + ' breakfast' |translate"></span>
 <span ng-bind="true ? 'Always' : 'Never' |i18n "></span>
 <span ng-bind="'This will ' + (true ? 'always' : 'never') + ' be true' |i18n "></span>
@@ -235,23 +235,23 @@ exports.HTML_JS_EXPRESSION_COMPLEX_FILTERS = `
 <span ng-bind="isC ? 'C' + (isD ? 'D' : 'd') : 'c' + (isE ? 'E' : 'e') |i18n "></span>
 `;
 
-exports.HTML_JS_EXPRESSION_WITH_NUMBER = `
+export const HTML_JS_EXPRESSION_WITH_NUMBER = `
 {{ 'A' + 42 + '.' |translate }}
 `;
 
-exports.HTML_JS_EXPRESSION_SYNTAX_ERROR = `
+export const HTML_JS_EXPRESSION_SYNTAX_ERROR = `
 {{ 'A' + b' |translate }}
 `;
 
-exports.HTML_INCOMPLETE_COMMENT = `
+export const HTML_INCOMPLETE_COMMENT = `
 <!--ng-bind="'Cancel' |translate"></button>-->
 `;
 
-exports.HTML_DELIMITERS_INSIDE_FILTER_TEXT = `
+export const HTML_DELIMITERS_INSIDE_FILTER_TEXT = `
 <p ng-bind="'You received {{ vm.count}} coins!' |translate"></p>
 `;
 
-exports.VUE_COMPONENT_WITH_SCRIPT_TAG = `
+export const VUE_COMPONENT_WITH_SCRIPT_TAG = `
     <template>
         <h1>{{ greeting_message }}</h1>
     </template>
@@ -278,13 +278,13 @@ exports.VUE_COMPONENT_WITH_SCRIPT_TAG = `
      </script>
 `;
 
-exports.VUE_COMPONENT_WITHOUT_SCRIPT_TAG = `
+export const VUE_COMPONENT_WITHOUT_SCRIPT_TAG = `
     <template>
         <h1>Hello</h1>
     </template>
 `;
 
-exports.VUE_COMPONENT_WITH_GETTEXT_IN_TEMPLATE = `
+export const VUE_COMPONENT_WITH_GETTEXT_IN_TEMPLATE = `
     <template>
         <article>
         <a :title="$gettext('Link title')" v-translate>Link body</a>
@@ -302,7 +302,7 @@ exports.VUE_COMPONENT_WITH_GETTEXT_IN_TEMPLATE = `
     </script>
 `;
 
-exports.POT_OUTPUT_VUE_COMPONENT_WITH_GETTEXT_IN_TEMPLATE = `msgid ""
+export const POT_OUTPUT_VUE_COMPONENT_WITH_GETTEXT_IN_TEMPLATE = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -322,7 +322,7 @@ msgid "Link title"
 msgstr ""
 `;
 
-exports.VUE_COMPONENT_WITH_GETTEXT_IN_TEXT_AND_DATA = `
+export const VUE_COMPONENT_WITH_GETTEXT_IN_TEXT_AND_DATA = `
 <template>
   <div>
     <h1 v-translate>Test String 1</h1>
@@ -343,7 +343,7 @@ export default {
 </style>
 `;
 
-exports.POT_OUTPUT_VUE_COMPONENT_WITH_GETTEXT_IN_TEXT_AND_DATA = `msgid ""
+export const POT_OUTPUT_VUE_COMPONENT_WITH_GETTEXT_IN_TEXT_AND_DATA = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -359,7 +359,7 @@ msgid "Test String 3"
 msgstr ""
 `;
 
-exports.CLI_OUTPUT_VUE_COMPONENT_WITH_GETTEXT_IN_TEXT_AND_DATA = `[easygettext] extracting: '{path}'
+export const CLI_OUTPUT_VUE_COMPONENT_WITH_GETTEXT_IN_TEXT_AND_DATA = `[easygettext] extracting: '{path}'
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
@@ -377,7 +377,7 @@ msgstr ""
 
 `;
 
-exports.VUE_COMPONENT_EXPECTED_PROCESSED_SCRIPT_TAG = `export default {
+export const VUE_COMPONENT_EXPECTED_PROCESSED_SCRIPT_TAG = `export default {
             name: "greetings",
             computed: {
                 greeting_message() {
@@ -397,7 +397,7 @@ exports.VUE_COMPONENT_EXPECTED_PROCESSED_SCRIPT_TAG = `export default {
             }
         }`;
 
-exports.VUE_COMPONENT_WITH_TS_SCRIPT_TAG = `
+export const VUE_COMPONENT_WITH_TS_SCRIPT_TAG = `
     <template>
         <h1>{{ greeting_message }}</h1>
     </template>
@@ -426,7 +426,7 @@ exports.VUE_COMPONENT_WITH_TS_SCRIPT_TAG = `
      </script>
 `;
 
-exports.VUE_COMPONENT_EXPECTED_PROCESSED_TS_SCRIPT_TAG = `type Message = string;
+export const VUE_COMPONENT_EXPECTED_PROCESSED_TS_SCRIPT_TAG = `type Message = string;
 
         export default {
             name: "greetings",
@@ -448,7 +448,7 @@ exports.VUE_COMPONENT_EXPECTED_PROCESSED_TS_SCRIPT_TAG = `type Message = string;
             }
         }`;
 
-exports.VUE_COMPONENT_WITH_FLOW_SCRIPT_TAG = `
+export const VUE_COMPONENT_WITH_FLOW_SCRIPT_TAG = `
     <template>
         <h1>{{ greeting_message }}</h1>
     </template>
@@ -478,7 +478,7 @@ exports.VUE_COMPONENT_WITH_FLOW_SCRIPT_TAG = `
      </script>
 `;
 
-exports.VUE_COMPONENT_EXPECTED_PROCESSED_FLOW_SCRIPT_TAG = `// @flow
+export const VUE_COMPONENT_EXPECTED_PROCESSED_FLOW_SCRIPT_TAG = `// @flow
         type Message = string;
 
         export default {
@@ -501,7 +501,7 @@ exports.VUE_COMPONENT_EXPECTED_PROCESSED_FLOW_SCRIPT_TAG = `// @flow
             }
         }`;
 
-exports.SCRIPT_WITH_TEMPLATE_LITERALS = `
+export const SCRIPT_WITH_TEMPLATE_LITERALS = `
 export default {
     name: "greetings",
     computed: {
@@ -529,7 +529,7 @@ please translate me.\`)
 }
 `;
 
-exports.SCRIPT_WITH_TEMPLATE_LITERALS_WITH_VARIABLES = `
+export const SCRIPT_WITH_TEMPLATE_LITERALS_WITH_VARIABLES = `
 export default {
     name: "greetings",
     computed: {
@@ -546,7 +546,7 @@ export default {
 }
 `;
 
-exports.SCRIPT_WITH_STRING_CONCAT = `
+export const SCRIPT_WITH_STRING_CONCAT = `
 export default {
     name: "greetings",
     computed: {
@@ -581,7 +581,7 @@ export default {
 }
 `;
 
-exports.SCRIPT_USING_NGETTEXT = `
+export const SCRIPT_USING_NGETTEXT = `
     export default {
         name: "greetings",
         methods: {
@@ -594,7 +594,7 @@ exports.SCRIPT_USING_NGETTEXT = `
     }
 `;
 
-exports.SCRIPT_USING_NGETTEXT_TS = `
+export const SCRIPT_USING_NGETTEXT_TS = `
     export default {
         name: "greetings",
         methods: {
@@ -607,7 +607,7 @@ exports.SCRIPT_USING_NGETTEXT_TS = `
     }
 `;
 
-exports.SCRIPT_USING_PGETTEXT = `
+export const SCRIPT_USING_PGETTEXT = `
     export default {
         name: "menuEntry",
         computed: {
@@ -621,7 +621,7 @@ exports.SCRIPT_USING_PGETTEXT = `
     }
 `;
 
-exports.SCRIPT_USING_PGETTEXT_TS = `
+export const SCRIPT_USING_PGETTEXT_TS = `
     export default {
         name: "menuEntry",
         computed: {
@@ -635,7 +635,7 @@ exports.SCRIPT_USING_PGETTEXT_TS = `
     }
 `;
 
-exports.SCRIPT_USING_NPGETTEXT = `
+export const SCRIPT_USING_NPGETTEXT = `
     export default {
         name: "menuEntry",
         computed: {
@@ -649,7 +649,7 @@ exports.SCRIPT_USING_NPGETTEXT = `
     }`
 ;
 
-exports.SCRIPT_CONTAINING_DECOYS = `
+export const SCRIPT_CONTAINING_DECOYS = `
 import $gettext from '@helper/gettext';
 
 export default {
@@ -661,12 +661,12 @@ export default {
   }
 }`;
 
-exports.SCRIPT_WITH_ES_STAGE3_FEATURES = `
+export const SCRIPT_WITH_ES_STAGE3_FEATURES = `
 const asyncModule = () => import('module');
 const message = this.$gettext('Hello world from the future');
 `;
 
-exports.POT_OUTPUT_0 = `msgid ""
+export const POT_OUTPUT_0 = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -679,7 +679,7 @@ msgid "Hello world"
 msgstr ""
 `;
 
-exports.POT_OUTPUT_1 = `msgid ""
+export const POT_OUTPUT_1 = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -698,7 +698,7 @@ msgstr[0] ""
 msgstr[1] ""
 `;
 
-exports.POT_OUTPUT_CONTEXTS = `msgid ""
+export const POT_OUTPUT_CONTEXTS = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -716,7 +716,7 @@ msgid "Hello world"
 msgstr ""
 `;
 
-exports.POT_OUTPUT_TAGS = `msgid ""
+export const POT_OUTPUT_TAGS = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -736,7 +736,7 @@ msgid "Rabbit"
 msgstr ""
 `;
 
-exports.POT_OUTPUT_QUOTES = `msgid ""
+export const POT_OUTPUT_QUOTES = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -756,7 +756,7 @@ msgid "Respect Users' Preferences"
 msgstr ""
 `;
 
-exports.POT_OUTPUT_MULTIPLE_TAGS = `msgid ""
+export const POT_OUTPUT_MULTIPLE_TAGS = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -769,7 +769,7 @@ msgstr ""
 `;
 
 
-exports.POT_OUTPUT_MULTIREF = `msgid ""
+export const POT_OUTPUT_MULTIREF = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -783,7 +783,7 @@ msgid "Hello world"
 msgstr ""
 `;
 
-exports.POT_OUTPUT_MULTICOMMENTS = `msgid ""
+export const POT_OUTPUT_MULTICOMMENTS = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -798,7 +798,7 @@ msgid "Hello"
 msgstr ""
 `;
 
-exports.POT_OUTPUT_SORTED = `msgid ""
+export const POT_OUTPUT_SORTED = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -866,7 +866,7 @@ msgid "g"
 msgstr ""
 `;
 
-exports.INPUT_PO = `msgid ""
+export const INPUT_PO = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -896,7 +896,7 @@ msgstr "Something"
 msgid "Action failure"
 msgstr ""`;
 
-exports.OUTPUT_DICT = {
+export const OUTPUT_DICT = {
   headers: {
     '': '',
     'Content-Transfer-Encoding': '8bit',
@@ -922,7 +922,7 @@ exports.OUTPUT_DICT = {
   },
 };
 
-exports.POT_OUTPUT_VUE_SCRIPT_GETTEXT = `msgid ""
+export const POT_OUTPUT_VUE_SCRIPT_GETTEXT = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -938,7 +938,7 @@ msgid "Hello there!"
 msgstr ""
 `;
 
-exports.POT_OUTPUT_VUE_SCRIPT_NGETTEXT = `msgid ""
+export const POT_OUTPUT_VUE_SCRIPT_NGETTEXT = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -952,7 +952,7 @@ msgstr[0] ""
 msgstr[1] ""
 `;
 
-exports.POT_OUTPUT_VUE_SCRIPT_PGETTEXT = `msgid ""
+export const POT_OUTPUT_VUE_SCRIPT_PGETTEXT = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -970,7 +970,7 @@ msgid "Home"
 msgstr ""
 `;
 
-exports.POT_OUTPUT_VUE_SCRIPT_NPGETTEXT = `msgid ""
+export const POT_OUTPUT_VUE_SCRIPT_NPGETTEXT = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -993,7 +993,7 @@ msgstr[1] ""
 `;
 
 
-exports.VUE_COMPONENT_FROM_JAVASCRIPT = `
+export const VUE_COMPONENT_FROM_JAVASCRIPT = `
 import Vue from 'vue'
 
 const TestComponent2 = Vue.component('TestComponent2', {
@@ -1005,7 +1005,7 @@ const TestComponent2 = Vue.component('TestComponent2', {
 export default TestComponent2
 `;
 
-exports.POT_OUTPUT_VUE_COMPONENT_FROM_JAVASCRIPT = `msgid ""
+export const POT_OUTPUT_VUE_COMPONENT_FROM_JAVASCRIPT = `msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
@@ -1017,21 +1017,21 @@ msgid "Test String 2"
 msgstr ""
 `;
 
-exports.PUG_WITH_INCLUDE = `
+export const PUG_WITH_INCLUDE = `
 h1 hello
 include common/footer
 `;
-exports.PUG_COMMON_FOOTER = `
+export const PUG_COMMON_FOOTER = `
 footer
   p Copyright E CORP
 `;
-exports.PUG_EXPECTED_PROCESSED_PUG_WITH_INCLUDE = `<h1>hello</h1>
+export const PUG_EXPECTED_PROCESSED_PUG_WITH_INCLUDE = `<h1>hello</h1>
 <footer>
   <p>Copyright E CORP</p>
 </footer>`;
 
-exports.SCRIPT_GETTEXT_SEQUENCE_FILENAME = 'gettext_sequence.vue';
-exports.SCRIPT_GETTEXT_SEQUENCE = `
+export const SCRIPT_GETTEXT_SEQUENCE_FILENAME = 'gettext_sequence.vue';
+export const SCRIPT_GETTEXT_SEQUENCE = `
 export default {
   name: 'greetings-sequence',
   computed: {
@@ -1043,7 +1043,7 @@ export default {
     }
   }
 }`;
-exports.SCRIPT_GETTEXT_SEQUENCE_TS = `
+export const SCRIPT_GETTEXT_SEQUENCE_TS = `
 export default {
   name: 'greetings-sequence',
   computed: {

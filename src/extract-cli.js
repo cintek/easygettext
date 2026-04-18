@@ -2,13 +2,13 @@
 
 /* eslint no-console:0 */
 
-const fs = require('fs');
-const minimist = require('minimist');
+import fs from 'fs';
+import minimist from 'minimist';
 
-const constants = require('./constants.js');
-const extract = require('./extract.js');
+import {} from 'constants';
+import { Extractor } from './extract.js';
+import { DEFAULT_ATTRIBUTES, DEFAULT_DELIMITERS, DEFAULT_FILTER_PREFIX, DEFAULT_FILTERS, PROGRAM_NAME } from './constants.js';
 
-const PROGRAM_NAME = constants.PROGRAM_NAME;
 const ALLOWED_EXTENSIONS = ['html', 'htm', 'jade', 'js', 'pug', 'vue', 'ts'];
 const ALLOWED_EXTENSIONS_EXCEPTIONS = ['.d.ts'];
 
@@ -17,13 +17,13 @@ const argv = minimist(process.argv.slice(2));
 const files = argv._.sort() || [];
 const quietMode = argv.quiet || false;
 const outputFile = argv.output || null;
-const startDelimiter = argv.startDelimiter === undefined ? constants.DEFAULT_DELIMITERS.start : argv.startDelimiter;
-const endDelimiter = argv.endDelimiter === undefined ? constants.DEFAULT_DELIMITERS.end : argv.endDelimiter;
+const startDelimiter = argv.startDelimiter === undefined ? DEFAULT_DELIMITERS.start : argv.startDelimiter;
+const endDelimiter = argv.endDelimiter === undefined ? DEFAULT_DELIMITERS.end : argv.endDelimiter;
 // Allow to pass extra attributes, e.g. gettext-extract --attribute v-translate --attribute v-i18n
 const extraAttribute = argv.attribute || false;
 const extraFilter = argv.filter || false;
 const removeHTMLWhitespaces = argv.removeHTMLWhitespaces || false;
-const filterPrefix = argv.filterPrefix || constants.DEFAULT_FILTER_PREFIX;
+const filterPrefix = argv.filterPrefix || DEFAULT_FILTER_PREFIX;
 const jsParser = argv.parser || 'auto';
 
 if (!quietMode && (!files || files.length === 0)) {
@@ -43,11 +43,11 @@ function _getExtraNames(extraEntities, defaultEntities) {
   return attributes;
 }
 
-const attributes = _getExtraNames(extraAttribute, constants.DEFAULT_ATTRIBUTES);
-const filters = _getExtraNames(extraFilter, constants.DEFAULT_FILTERS);
+const attributes = _getExtraNames(extraAttribute, DEFAULT_ATTRIBUTES);
+const filters = _getExtraNames(extraFilter, DEFAULT_FILTERS);
 
 // Extract strings
-const extractor = new extract.Extractor({
+const extractor = new Extractor({
   lineNumbers: true,
   attributes,
   filters,

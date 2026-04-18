@@ -1,10 +1,9 @@
-const {Parser} = require('acorn');
-const stage3 = require('acorn-stage3');
-const babel = require('@babel/core');
-const {getTextEntries} = require('./extract-utils.js');
-const {PROGRAM_NAME} = require('./constants.js');
+import {Parser} from 'acorn';
+import babel from '@babel/core';
+import {getTextEntries} from './extract-utils.js';
+import {PROGRAM_NAME} from './constants.js';
 
-const {DEFAULT_VUE_GETTEXT_FUNCTIONS} = require('./constants.js');
+import {DEFAULT_VUE_GETTEXT_FUNCTIONS} from './constants.js';
 
 function extractConcatenatedStrings(value, allTokens, index) {
   const nextToken = allTokens[index + 1];
@@ -82,12 +81,9 @@ function parseJSGettextWithAcorn(script) {
     sourceType: 'module',
     locations: true,
     onToken: allTokens,
-    plugins: {
-      stage3: true,
-    },
   };
 
-  Parser.extend(stage3).parse(script, ACORN_OPTIONS);
+  Parser.parse(script, ACORN_OPTIONS);
 
   return allTokens;
 }
@@ -130,6 +126,4 @@ function extractStringsFromJavascript(filename, script, parser = 'auto') {
   return getTextEntries(filename, getGettextEntriesFromJavaScript(parsedJSGettext));
 }
 
-module.exports = {
-  extractStringsFromJavascript,
-};
+export { extractStringsFromJavascript };

@@ -1,5 +1,4 @@
-const Pofile = require('pofile');
-
+import PO from 'pofile';
 
 /**
  * sanitizePoData
@@ -45,7 +44,7 @@ function sanitizePoData(poItems) {
 
 
 function po2json(poContent) {
-  const catalog = Pofile.parse(poContent);
+  const catalog = PO.parse(poContent);
   if (!catalog.headers.Language) {
     throw new Error('No Language headers found!');
   }
@@ -55,7 +54,7 @@ function po2json(poContent) {
   };
 }
 
-module.exports = {
+export {
   sanitizePoData,
   po2json,
 };

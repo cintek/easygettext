@@ -1,5 +1,5 @@
-const Pofile = require('pofile');
-const {MARKER_NO_CONTEXT} = require('./constants.js');
+import PO from 'pofile';
+import { MARKER_NO_CONTEXT } from './constants.js';
 
 function lineNumToString(withLineNumbers = false) {
   return (withLineNumbers && this.line)
@@ -8,7 +8,7 @@ function lineNumToString(withLineNumbers = false) {
 }
 
 function toPoItem(withLineNumbers = false) {
-  let poItem = new Pofile.Item();
+  let poItem = new PO.Item();
 
   poItem.msgid = this.msgid;
   poItem.msgid_plural = this.plural;
@@ -37,6 +37,4 @@ function getTextEntries(filename, textEntries) {
   });
 }
 
-module.exports = {
-  getTextEntries,
-};
+export { getTextEntries };

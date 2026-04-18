@@ -11,7 +11,7 @@ export default defineConfig([{
         },
 
         ecmaVersion: 8,
-        sourceType: "commonjs",
+        sourceType: "module",
     },
 
     rules: {

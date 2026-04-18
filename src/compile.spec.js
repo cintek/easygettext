@@ -1,5 +1,6 @@
-const compile = require('./compile.js');
-const fixtures = require('./test-fixtures.js');
+import {po2json, sanitizePoData} from './compile.js';
+import {INPUT_PO, OUTPUT_DICT} from './test-fixtures.js';
+import { expect } from 'chai';
 
 function mockPoItem(overrides = {}) {
   return Object.assign({
@@ -18,19 +19,19 @@ describe('sanitizePoData', () => {
     const obsoleteItem = mockPoItem({msgid: 'bar', obsolete: true});
     const fuzzyItem = mockPoItem({msgid: 'foo', flags: {fuzzy: true}});
     const bogusItem = mockPoItem({msgid: 'baz', msgstr: []});
-    expect(compile.sanitizePoData([normalItem])).toEqual({'Hello world': 'Bonjour Monde'});
-    expect(compile.sanitizePoData([obsoleteItem])).toEqual({});
-    expect(compile.sanitizePoData([fuzzyItem])).toEqual({});
-    expect(compile.sanitizePoData([bogusItem])).toEqual({});
-    expect(compile.sanitizePoData([normalItem, obsoleteItem, fuzzyItem, bogusItem]))
-      .toEqual({'Hello world': 'Bonjour Monde'});
+    expect(sanitizePoData([normalItem])).to.deep.equal({'Hello world': 'Bonjour Monde'});
+    expect(sanitizePoData([obsoleteItem])).to.deep.equal({});
+    expect(sanitizePoData([fuzzyItem])).to.deep.equal({});
+    expect(sanitizePoData([bogusItem])).to.deep.equal({});
+    expect(sanitizePoData([normalItem, obsoleteItem, fuzzyItem, bogusItem]))
+      .to.deep.equal({'Hello world': 'Bonjour Monde'});
   });
 
   it('should keep context', () => {
     const normalItem = mockPoItem();
     const contextItem = mockPoItem({msgctxt: 'in Belize', msgstr: ['Hola Amigos']});
-    expect(compile.sanitizePoData([normalItem, contextItem]))
-      .toEqual({
+    expect(sanitizePoData([normalItem, contextItem]))
+      .to.deep.equal({
         'Hello world': {
           '': 'Bonjour Monde',
           'in Belize': 'Hola Amigos',
@@ -41,6 +42,6 @@ describe('sanitizePoData', () => {
 
 describe('po2json', () => {
   it('should correctly parse PO content', () => {
-    expect(compile.po2json(fixtures.INPUT_PO)).toEqual(fixtures.OUTPUT_DICT);
+    expect(po2json(INPUT_PO)).to.deep.equal(OUTPUT_DICT);
   });
 });
